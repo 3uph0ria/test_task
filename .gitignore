@@ -1,0 +1,4 @@
+.idea
+.git
+db_data/*
+apache_log/*
