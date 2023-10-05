@@ -14,37 +14,43 @@ class Comments extends BaseController
 
     public function index()
     {
-        $data = [
-            'Comments' =>  $this->model->findAll()
-        ];
+
+        $field = $this->request->getPost('fieldSort');
+        $type = $this->request->getPost('typeSort');
+
+        $data = $this->getData($field, $type);
 
         return view('Comments/index.php', $data);
     }
 
-    public function getData()
-    {
-        $data = [
-            'Comments' =>  $this->model->findAll()
-        ];
-
-        return view('Comments/data.php', $data);
-    }
 
     public function store()
     {
-        $result = $this->model->insert(
+        $result = $this->model->insert
+        (
             [
                 'Name' => $this->request->getPost('Name'),
                 'Text' => $this->request->getPost('Text'),
                 'Date' => $this->request->getPost('Date')
-
             ]
         );
 
         if(!$result)
-            $_SESSION['errors'] = $this->model->errors();
+        {
+            $data = [
+                'success' => false,
+                'message' => implode(' | ', $this->model->errors()),
+            ];
+            return $this->response->setJSON($data);
+        }
         else
-            $_SESSION['success'] = 'Комментарий успешно добавлен!';
+        {
+            $data = [
+                'success' => true,
+                'message' => 'Комментарий успешно добавлен!',
+            ];
+            return $this->response->setJSON($data);
+        }
     }
 
     public function delete()
@@ -52,9 +58,44 @@ class Comments extends BaseController
         $result = $this->model->delete($this->request->getGet('Id'));
 
         if(!$result)
-            $_SESSION['errors'] = $this->model->errors();
+        {
+            $data = [
+                'success' => false,
+                'message' => implode(' | ', $this->model->errors()),
+            ];
+            return $this->response->setJSON($data);
+        }
         else
-            $_SESSION['success'] = 'Комментарий успешно удален!';
+        {
+            $data = [
+                'success' => true,
+                'message' => 'Комментарий успешно удален!',
+            ];
+            return $this->response->setJSON($data);
+        }
+    }
+
+    public function getData($field, $type)
+    {
+
+        if(isset($field) && isset($type))
+        {
+            $data = [
+                'sort' => ['fieldSort' => $field, 'typeSort' => $type],
+                'comments' => $this->model->SortCpmments($field, $type)->paginate(),
+                'pager' => $this->model->pager
+            ];
+        }
+        else
+        {
+            $data = [
+                'sort' => ['fieldSort' => 'ID', 'typeSort' => 'DESC'],
+                'comments' => $this->model->paginate(),
+                'pager' => $this->model->pager
+            ];
+        }
+
+        return $data;
     }
 
 

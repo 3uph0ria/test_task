@@ -32,9 +32,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Comments::index');
-$routes->get('/Data', 'Comments::getData');
-
+$routes->get('/', 'Comments::index', ['as' => 'Comments']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

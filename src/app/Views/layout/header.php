@@ -198,6 +198,52 @@
             }
         }
 
+        .errors-alert {
+            position: relative;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+            border-left: 0.25rem solid #d7a818 !important;
+            border: 1px solid transparent;
+        }
+
+        .success-alert {
+            position: relative;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+            border-left: 0.25rem solid #2a9918 !important;
+            border: 1px solid transparent;
+        }
+
+        .pagination {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius: 0.25rem;
+
+        }
+
+        .pagination a {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        .pagination li.active a {
+            z-index: 1;
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
     </style>
 </head>
 <body>

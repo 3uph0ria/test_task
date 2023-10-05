@@ -18,7 +18,20 @@ class Comments_model extends Model
         'Name' => [
             'required' => 'Укажите Email',
             'valid_email' => 'Укажите корректный Email, например test@mail.ru'
+        ],
+        'Text' => [
+            'required' => 'Укажите текст комментария!'
+        ],
+        'Date' => [
+            'required' => 'Укажите дату!'
         ]
+
     ];
+
+    public function SortCpmments($field, $type)
+    {
+        $this->builder()->orderBy($field, $type);
+        return $this;
+    }
 
 }

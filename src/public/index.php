@@ -7,7 +7,6 @@ if (version_compare(PHP_VERSION, $minPHPVersion, '<'))
 	die("Your PHP version must be {$minPHPVersion} or higher to run CodeIgniter. Current version: " . PHP_VERSION);
 }
 unset($minPHPVersion);
-session_start();
 
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
