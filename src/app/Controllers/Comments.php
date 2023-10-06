@@ -77,7 +77,6 @@ class Comments extends BaseController
 
     public function getData($field, $type)
     {
-
         if(isset($field) && isset($type))
         {
             $data = [
@@ -97,6 +96,5 @@ class Comments extends BaseController
 
         return $data;
     }
-
 
 }

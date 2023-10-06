@@ -7,7 +7,6 @@
         <h1>Комментарии</h1>
     </div>
 
-
     <?= form_open('Comments/index'); ?>
     <div class="row p-2">
         <select name="fieldSort" class="form-select mx-2" aria-label="Выберите поле для сортировки">
@@ -21,7 +20,6 @@
         <button type="submit" class="btn btn-success mx-2">Сортировать</button>
     </div>
     <?= form_close(); ?>
-
 
     <div class="output">
         <?php foreach ($comments as $comment): ?>
@@ -44,10 +42,8 @@
 
     <div class="alerts mt-3"></div>
 
-
     <div class="my-5">
         <h2>Добавление комментария</h2>
-
         <form method="post" accept-charset="utf-8" id="addForm">
 
             <div class="my-3">
@@ -66,24 +62,9 @@
             <button type="submit" id="addButton"  class="btn btn-primary">Добавить</button>
 
         </form>
-
     </div>
 
 </div>
-
-<script>
-    function updateComments() {
-        $('.output').html('');
-
-        $.ajax({
-            type: "GET",
-            url: "http://localhost/Data",
-            success: function (data) {
-                $('.output').html(data);
-            },
-        });
-    }
-</script>
 
 <script>
     $("#addForm").submit(function (e)
@@ -105,11 +86,10 @@
                     $('.alerts').html('<div class="errors-alert">' + data.message + "</div>");
 
                 alert(data.message);
-                location.reload();
+                window.location.replace(location.href);
             },
         });
     });
-
 
     function deleteComment(Id)
     {
@@ -127,15 +107,12 @@
                         $('.alerts').html('<div class="errors-alert">' + data.message + "</div>");
 
                     alert(data.message);
-                    location.reload();
+                    window.location.replace(location.href);
                 },
             });
         }
     }
-
-
 </script>
-
 
 <?= $this->endSection(); ?>
 
